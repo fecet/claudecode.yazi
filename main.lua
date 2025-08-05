@@ -130,7 +130,7 @@ local function copy_to_clipboard(text)
 		end
 	elseif ya.target_family() == "windows" then
 		-- Windows clipboard using PowerShell
-		local cmd = string.format('powershell -Command "Set-Clipboard -Value \'%s\'"', text:gsub("'", "''"))
+		local cmd = string.format("powershell -Command \"Set-Clipboard -Value '%s'\"", text:gsub("'", "''"))
 		success = os.execute(cmd) == 0
 	end
 
@@ -150,7 +150,7 @@ return {
 				title = "Claude Code",
 				content = "No file selected",
 				level = "warn",
-				timeout = 5
+				timeout = 5,
 			})
 		end
 
@@ -173,9 +173,9 @@ return {
 		if not project_root then
 			return ya.notify({
 				title = "Claude Code",
-				content = "No .git or .claude directory found in parent directories",
+				content = "No .git or .claude directory found in parent directories" .. search_start_dir,
 				level = "warn",
-				timeout = 5
+				timeout = 5,
 			})
 		end
 
@@ -197,14 +197,14 @@ return {
 				title = "Claude Code",
 				content = string.format("Copied %d file(s) as Claude paths: %s", #file_paths, result),
 				level = "info",
-				timeout = 5
+				timeout = 5,
 			})
 		else
 			ya.notify({
 				title = "Claude Code",
 				content = "Failed to copy to clipboard",
 				level = "error",
-				timeout = 5
+				timeout = 5,
 			})
 		end
 	end,
